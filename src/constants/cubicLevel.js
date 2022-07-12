@@ -3,14 +3,9 @@ export const levelMap = {
 
 };
 
-let cubeId = 0;
-export const level = [...new Array(10)].map((xRow, x) => {
-  cubeId += 1;
-  return [...new Array(10)].map((yRow, y) => {
+let cubeId = -1;
+export const level = [...new Array(10)].map((xRow, x) => [...new Array(10)]
+  .map((yRow, y) => [...new Array(10)].map((zRow, z) => {
     cubeId += 1;
-    return [...new Array(10)].map((zRow, z) => {
-      cubeId += 1;
-      return cubeId;
-    });
-  });
-});
+    return cubeId;
+  })));
