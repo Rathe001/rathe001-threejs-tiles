@@ -20,6 +20,9 @@ const playerSlice = createSlice({
       if (dir === 'S') state.position.z -= 1;
       if (dir === 'W') state.position.x += 1;
     },
+    moveDown(state) {
+      state.position.y -= 1;
+    },
     moveForward(state) {
       const dir = getFacing(state.position.rotation);
       if (dir === 'N') state.position.z -= 1;
@@ -40,6 +43,9 @@ const playerSlice = createSlice({
       if (dir === 'E') state.position.z += 1;
       if (dir === 'S') state.position.x -= 1;
       if (dir === 'W') state.position.z -= 1;
+    },
+    moveUp(state) {
+      state.position.y += 1;
     },
     setPosition(state, action) {
       state.position = {
@@ -66,7 +72,15 @@ const playerSlice = createSlice({
 
 const { actions, reducer } = playerSlice;
 export const {
-  moveBackward, moveForward, moveLeft, moveRight, setPosition, turnLeft, turnRight,
+  moveBackward,
+  moveDown,
+  moveForward,
+  moveLeft,
+  moveRight,
+  moveUp,
+  setPosition,
+  turnLeft,
+  turnRight,
 } = actions;
 
 export default reducer;

@@ -7,8 +7,9 @@ import { levelMap } from '../../constants/cubicLevel';
 function Tile({ cubeId, position }) {
   const mesh = useRef(null);
   const [active, setActive] = useState(true);
-  const floorTexture = useLoader(TextureLoader, 'textures/texture1.jpeg');
-  const ceilingTexture = useLoader(TextureLoader, 'textures/texture2.jpeg');
+  const [aluminumTexture] = useLoader(TextureLoader, [
+    'textures/stone1.jpeg',
+  ]);
 
   return active && (
     <mesh
@@ -23,12 +24,12 @@ function Tile({ cubeId, position }) {
       }}
     >
       <boxBufferGeometry attach="geometry" args={[1, 0.75, 1]} />
-      <meshStandardMaterial map={floorTexture} opacity={1} attachArray="material" />
-      <meshStandardMaterial map={floorTexture} opacity={1} attachArray="material" />
-      <meshStandardMaterial map={floorTexture} opacity={1} attachArray="material" />
-      <meshStandardMaterial map={ceilingTexture} opacity={1} attachArray="material" />
-      <meshStandardMaterial map={ceilingTexture} opacity={1} attachArray="material" />
-      <meshStandardMaterial map={floorTexture} opacity={1} attachArray="material" />
+      <meshStandardMaterial map={aluminumTexture} displacementMap={aluminumTexture} attach="material" />
+      <meshStandardMaterial map={aluminumTexture} attach="material" metalness={1} />
+      <meshStandardMaterial map={aluminumTexture} attach="material" metalness={1} />
+      <meshStandardMaterial map={aluminumTexture} attach="material" metalness={1} />
+      <meshStandardMaterial map={aluminumTexture} attach="material" metalness={1} />
+      <meshStandardMaterial map={aluminumTexture} attach="material" metalness={1} />
     </mesh>
 
   );

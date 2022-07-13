@@ -7,7 +7,7 @@ import Tile from '../Tile/Tile';
 import Camera from '../Camera/Camera';
 import useKeyboard from '../../hooks/useKeyboard';
 import {
-  moveBackward, moveForward, moveLeft, moveRight, turnLeft, turnRight,
+  moveBackward, moveForward, moveLeft, moveRight, turnLeft, turnRight, moveUp, moveDown,
 } from '../../state/playerSlice';
 import './App.css';
 
@@ -36,7 +36,9 @@ function App() {
     a: () => { dispatch(moveLeft()); },
     d: () => { dispatch(moveRight()); },
     e: () => { dispatch(turnRight()); },
+    f: () => { dispatch(moveDown()); },
     q: () => { dispatch(turnLeft()); },
+    r: () => { dispatch(moveUp()); },
     s: () => { dispatch(moveBackward()); },
     w: () => { dispatch(moveForward()); },
   });

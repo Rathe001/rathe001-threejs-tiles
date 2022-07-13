@@ -13,16 +13,17 @@ function Camera({
   const cameraRef = useRef(null);
   const cameraOffset = 0.80;
   let adjustedX = x;
+  const adjustedY = y * 0.75;
   let adjustedZ = z;
   if (getFacing(rotation) === 'N') adjustedZ += cameraOffset;
   if (getFacing(rotation) === 'S') adjustedZ -= cameraOffset;
   if (getFacing(rotation) === 'E') adjustedX -= cameraOffset;
   if (getFacing(rotation) === 'W') adjustedX += cameraOffset;
 
-  const vec = new THREE.Vector3(adjustedX, y, adjustedZ);
+  const positionVec1 = new THREE.Vector3(adjustedX, adjustedY, adjustedZ);
 
   useFrame(() => {
-    cameraRef.current.position.lerp(vec, 0.2);
+    cameraRef.current.position.lerp(positionVec1, 0.6);
   });
 
   return (
@@ -31,10 +32,8 @@ function Camera({
       makeDefault
       rotation={[0, getRotationRadians(rotation), 0]}
       fov={fov}
-      // position={[adjustedX, y, adjustedZ]}
       near={1}
       far={1000}
-      onUpdate={(self) => self.updateProjectionMatrix()}
     >
       <pointLight
         decay={2}
