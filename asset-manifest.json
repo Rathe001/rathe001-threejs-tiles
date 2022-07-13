@@ -1,20 +1,13 @@
 {
   "files": {
-    "main.css": "https://astigmapro.com/rathe001-threejs-tiles/static/css/main.cb01164f.chunk.css",
-    "main.js": "https://astigmapro.com/rathe001-threejs-tiles/static/js/main.fa919e89.chunk.js",
-    "main.js.map": "https://astigmapro.com/rathe001-threejs-tiles/static/js/main.fa919e89.chunk.js.map",
-    "runtime-main.js": "https://astigmapro.com/rathe001-threejs-tiles/static/js/runtime-main.67e59370.js",
-    "runtime-main.js.map": "https://astigmapro.com/rathe001-threejs-tiles/static/js/runtime-main.67e59370.js.map",
-    "static/js/2.99c2c598.chunk.js": "https://astigmapro.com/rathe001-threejs-tiles/static/js/2.99c2c598.chunk.js",
-    "static/js/2.99c2c598.chunk.js.map": "https://astigmapro.com/rathe001-threejs-tiles/static/js/2.99c2c598.chunk.js.map",
+    "main.css": "https://astigmapro.com/rathe001-threejs-tiles/static/css/main.9cf6bf41.css",
+    "main.js": "https://astigmapro.com/rathe001-threejs-tiles/static/js/main.5bf3827a.js",
     "index.html": "https://astigmapro.com/rathe001-threejs-tiles/index.html",
-    "static/css/main.cb01164f.chunk.css.map": "https://astigmapro.com/rathe001-threejs-tiles/static/css/main.cb01164f.chunk.css.map",
-    "static/js/2.99c2c598.chunk.js.LICENSE.txt": "https://astigmapro.com/rathe001-threejs-tiles/static/js/2.99c2c598.chunk.js.LICENSE.txt"
+    "main.9cf6bf41.css.map": "https://astigmapro.com/rathe001-threejs-tiles/static/css/main.9cf6bf41.css.map",
+    "main.5bf3827a.js.map": "https://astigmapro.com/rathe001-threejs-tiles/static/js/main.5bf3827a.js.map"
   },
   "entrypoints": [
-    "static/js/runtime-main.67e59370.js",
-    "static/js/2.99c2c598.chunk.js",
-    "static/css/main.cb01164f.chunk.css",
-    "static/js/main.fa919e89.chunk.js"
+    "static/css/main.9cf6bf41.css",
+    "static/js/main.5bf3827a.js"
   ]
 }
