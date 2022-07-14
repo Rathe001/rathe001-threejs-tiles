@@ -20,8 +20,8 @@ function App() {
       (yRow, y) => yRow.map(
         (zRow, z) => {
           const zPos = -z;
-          const yPos = y * 0.75 - 0.75;
-          const xPos = x - 1;
+          const yPos = y * 0.75;
+          const xPos = x;
           return <Tile key={zRow} position={[xPos, yPos, zPos]} cubeId={zRow} />;
         },
       ),

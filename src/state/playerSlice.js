@@ -1,13 +1,17 @@
 /* eslint-disable no-param-reassign */
 import { createSlice } from '@reduxjs/toolkit';
 import getFacing from '../constants/getFacing';
+import { level, levelMap } from '../constants/cubicLevel';
+
+const getTile = (x, y, z) => levelMap?.[level?.[x]?.[y]?.[-z]];
+const isPassable = (x, y, z) => getTile(x, y, z)?.isPassable === true;
 
 const playerSlice = createSlice({
   initialState: {
     position: {
       rotation: 0,
-      x: 0,
-      y: 0,
+      x: 1,
+      y: 1,
       z: 0,
     },
   },
@@ -15,37 +19,43 @@ const playerSlice = createSlice({
   reducers: {
     moveBackward(state) {
       const dir = getFacing(state.position.rotation);
-      if (dir === 'N') state.position.z += 1;
-      if (dir === 'E') state.position.x -= 1;
-      if (dir === 'S') state.position.z -= 1;
-      if (dir === 'W') state.position.x += 1;
+      const { x, y, z } = state.position;
+      if (dir === 'N' && isPassable(x, y, z + 1)) state.position.z += 1;
+      if (dir === 'E' && isPassable(x - 1, y, z)) state.position.x -= 1;
+      if (dir === 'S' && isPassable(x, y, z - 1)) state.position.z -= 1;
+      if (dir === 'W' && isPassable(x + 1, y, z)) state.position.x += 1;
     },
     moveDown(state) {
-      state.position.y -= 1;
+      const { x, y, z } = state.position;
+      if (isPassable(x, y - 1, z)) state.position.y -= 1;
     },
     moveForward(state) {
       const dir = getFacing(state.position.rotation);
-      if (dir === 'N') state.position.z -= 1;
-      if (dir === 'E') state.position.x += 1;
-      if (dir === 'S') state.position.z += 1;
-      if (dir === 'W') state.position.x -= 1;
+      const { x, y, z } = state.position;
+      if (dir === 'N' && isPassable(x, y, z - 1)) state.position.z -= 1;
+      if (dir === 'E' && isPassable(x + 1, y, z)) state.position.x += 1;
+      if (dir === 'S' && isPassable(x, y, z + 1)) state.position.z += 1;
+      if (dir === 'W' && isPassable(x - 1, y, z)) state.position.x -= 1;
     },
     moveLeft(state) {
       const dir = getFacing(state.position.rotation);
-      if (dir === 'N') state.position.x -= 1;
-      if (dir === 'E') state.position.z -= 1;
-      if (dir === 'S') state.position.x += 1;
-      if (dir === 'W') state.position.z += 1;
+      const { x, y, z } = state.position;
+      if (dir === 'N' && isPassable(x - 1, y, z)) state.position.x -= 1;
+      if (dir === 'E' && isPassable(x, y, z - 1)) state.position.z -= 1;
+      if (dir === 'S' && isPassable(x + 1, y, z)) state.position.x += 1;
+      if (dir === 'W' && isPassable(x, y, z + 1)) state.position.z += 1;
     },
     moveRight(state) {
       const dir = getFacing(state.position.rotation);
-      if (dir === 'N') state.position.x += 1;
-      if (dir === 'E') state.position.z += 1;
-      if (dir === 'S') state.position.x -= 1;
-      if (dir === 'W') state.position.z -= 1;
+      const { x, y, z } = state.position;
+      if (dir === 'N' && isPassable(x + 1, y, z)) state.position.x += 1;
+      if (dir === 'E' && isPassable(x, y, z + 1)) state.position.z += 1;
+      if (dir === 'S' && isPassable(x - 1, y, z)) state.position.x -= 1;
+      if (dir === 'W' && isPassable(x, y, z - 1)) state.position.z -= 1;
     },
     moveUp(state) {
-      state.position.y += 1;
+      const { x, y, z } = state.position;
+      if (isPassable(x, y + 1, z)) state.position.y += 1;
     },
     setPosition(state, action) {
       state.position = {
