@@ -7,13 +7,23 @@ import Tile from '../Tile/Tile';
 import Camera from '../Camera/Camera';
 import useKeyboard from '../../hooks/useKeyboard';
 import {
-  moveBackward, moveForward, moveLeft, moveRight, turnLeft, turnRight, moveUp, moveDown,
+  moveBackward,
+  moveForward,
+  moveLeft,
+  moveRight,
+  turnLeft,
+  turnRight,
+  moveUp,
+  moveDown,
+  lightLevelIncrease,
+  lightLevelDecrease,
 } from '../../state/playerSlice';
 import './App.css';
 
 function App() {
   const dispatch = useDispatch();
   const playerPosition = useSelector(({ player }) => player.position);
+  const lightLevel = useSelector(({ player }) => player.lightLevel);
 
   const generateCubicLevel = () => level.map(
     (xRow, x) => xRow.map(
@@ -29,6 +39,8 @@ function App() {
   );
 
   useKeyboard({
+    1: () => { dispatch(lightLevelIncrease()); },
+    2: () => { dispatch(lightLevelDecrease()); },
     ArrowDown: () => { dispatch(moveBackward()); },
     ArrowLeft: () => { dispatch(turnLeft()); },
     ArrowRight: () => { dispatch(turnRight()); },
@@ -51,6 +63,7 @@ function App() {
           z={playerPosition.z}
           rotation={playerPosition.rotation}
           fov={40}
+          lightLevel={lightLevel}
         />
         <Stars
           radius={100} // Radius of the inner sphere (default=100)

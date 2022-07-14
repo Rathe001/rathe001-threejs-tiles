@@ -8,6 +8,7 @@ const isPassable = (x, y, z) => getTile(x, y, z)?.isPassable === true;
 
 const playerSlice = createSlice({
   initialState: {
+    lightLevel: 3,
     position: {
       rotation: 0,
       x: 1,
@@ -17,6 +18,12 @@ const playerSlice = createSlice({
   },
   name: 'player',
   reducers: {
+    lightLevelDecrease(state) {
+      if (state.lightLevel > 2) state.lightLevel -= 1;
+    },
+    lightLevelIncrease(state) {
+      if (state.lightLevel < 15) state.lightLevel += 1;
+    },
     moveBackward(state) {
       const dir = getFacing(state.position.rotation);
       const { x, y, z } = state.position;
@@ -82,6 +89,8 @@ const playerSlice = createSlice({
 
 const { actions, reducer } = playerSlice;
 export const {
+  lightLevelDecrease,
+  lightLevelIncrease,
   moveBackward,
   moveDown,
   moveForward,
@@ -91,6 +100,7 @@ export const {
   setPosition,
   turnLeft,
   turnRight,
+
 } = actions;
 
 export default reducer;

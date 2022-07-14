@@ -8,7 +8,7 @@ import getFacing from '../../constants/getFacing';
 const getRotationRadians = (rotations) => Math.PI * (rotations / 2);
 
 function Camera({
-  fov, rotation, x, y, z,
+  fov, lightLevel, rotation, x, y, z,
 }) {
   const cameraRef = useRef(null);
   const cameraOffset = 0.90;
@@ -38,8 +38,8 @@ function Camera({
     >
       <pointLight
         decay={2}
-        distance={5}
-        intensity={2}
+        distance={lightLevel}
+        intensity={lightLevel}
       />
     </PerspectiveCamera>
   );
@@ -47,6 +47,7 @@ function Camera({
 
 Camera.propTypes = {
   fov: PropTypes.number.isRequired,
+  lightLevel: PropTypes.number.isRequired,
   rotation: PropTypes.number.isRequired,
   x: PropTypes.number.isRequired,
   y: PropTypes.number.isRequired,
