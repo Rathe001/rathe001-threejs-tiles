@@ -11,7 +11,7 @@ function Camera({
   fov, rotation, x, y, z,
 }) {
   const cameraRef = useRef(null);
-  const cameraOffset = 0.80;
+  const cameraOffset = 0.90;
   let adjustedX = x;
   const adjustedY = y * 0.75;
   let adjustedZ = z;
@@ -23,14 +23,15 @@ function Camera({
   const positionVec1 = new THREE.Vector3(adjustedX, adjustedY, adjustedZ);
 
   useFrame(() => {
-    cameraRef.current.position.lerp(positionVec1, 0.6);
+    cameraRef.current.position.lerp(positionVec1, 0.3);
   });
 
   return (
     <PerspectiveCamera
       ref={cameraRef}
       makeDefault
-      rotation={[0, getRotationRadians(rotation), 0]}
+      rotation={[-0.01, getRotationRadians(rotation), 0]}
+      // position={[adjustedX, adjustedY, adjustedZ]}
       fov={fov}
       near={1}
       far={1000}
