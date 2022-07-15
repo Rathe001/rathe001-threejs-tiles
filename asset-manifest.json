@@ -1,13 +1,13 @@
 {
   "files": {
     "main.css": "http://www.astigmapro.com/rathe001-threejs-tiles/static/css/main.9cf6bf41.css",
-    "main.js": "http://www.astigmapro.com/rathe001-threejs-tiles/static/js/main.41c1502f.js",
+    "main.js": "http://www.astigmapro.com/rathe001-threejs-tiles/static/js/main.9b229c62.js",
     "index.html": "http://www.astigmapro.com/rathe001-threejs-tiles/index.html",
     "main.9cf6bf41.css.map": "http://www.astigmapro.com/rathe001-threejs-tiles/static/css/main.9cf6bf41.css.map",
-    "main.41c1502f.js.map": "http://www.astigmapro.com/rathe001-threejs-tiles/static/js/main.41c1502f.js.map"
+    "main.9b229c62.js.map": "http://www.astigmapro.com/rathe001-threejs-tiles/static/js/main.9b229c62.js.map"
   },
   "entrypoints": [
     "static/css/main.9cf6bf41.css",
-    "static/js/main.41c1502f.js"
+    "static/js/main.9b229c62.js"
   ]
 }
