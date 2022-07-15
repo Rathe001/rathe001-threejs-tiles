@@ -32,3 +32,20 @@ body {
   color: black;
   -webkit-font-smoothing: antialiased;
 }
+
+table {
+  border-collapse: collapse;
+}
+
+th,
+td {
+  text-align: center;
+  color: white;
+  border: 1px solid white;
+}
+
+.compass {
+  color: #fff;
+  font-size: 24px;
+  text-align: center;
+}
