@@ -8,6 +8,16 @@ import getFacing from '../constants/getFacing';
 
 const isPassable = (x, y, z, bounds, map) => map?.[bounds?.[x]?.[y]?.[-z]]?.isPassable === true;
 
+const exploreTile = (state, bounds) => {
+  if (state.maps[state.level][bounds?.[
+    state.player.position.x]?.[state.player.position.y]?.[-state.player.position.z]
+  ]) {
+    state.maps[state.level][bounds[
+      state.player.position.x][state.player.position.y][-state.player.position.z]
+    ].isExplored = true;
+  }
+};
+
 const gameSlice = createSlice({
   initialState: {
     bounds: {
@@ -51,9 +61,7 @@ const gameSlice = createSlice({
       if (dir === 'S' && (state.player.clipping || isPassable(x, y, z - 1, bounds, map))) state.player.position.z -= 1;
       if (dir === 'W' && (state.player.clipping || isPassable(x + 1, y, z, bounds, map))) state.player.position.x += 1;
 
-      state.maps[state.level][bounds[
-        state.player.position.x][state.player.position.y][-state.player.position.z]
-      ].isExplored = true;
+      exploreTile(state, bounds);
     },
     moveDown(state) {
       const { x, y, z } = state.player.position;
@@ -63,9 +71,7 @@ const gameSlice = createSlice({
         state.player.position.y -= 1;
       }
 
-      state.maps[state.level][bounds[
-        state.player.position.x][state.player.position.y][-state.player.position.z]
-      ].isExplored = true;
+      exploreTile(state, bounds);
     },
     moveForward(state) {
       const dir = getFacing(state.player.position.rotation);
@@ -77,9 +83,7 @@ const gameSlice = createSlice({
       if (dir === 'S' && (state.player.clipping || isPassable(x, y, z + 1, bounds, map))) state.player.position.z += 1;
       if (dir === 'W' && (state.player.clipping || isPassable(x - 1, y, z, bounds, map))) state.player.position.x -= 1;
 
-      state.maps[state.level][bounds[
-        state.player.position.x][state.player.position.y][-state.player.position.z]
-      ].isExplored = true;
+      exploreTile(state, bounds);
     },
     moveLeft(state) {
       const dir = getFacing(state.player.position.rotation);
@@ -91,9 +95,7 @@ const gameSlice = createSlice({
       if (dir === 'S' && (state.player.clipping || isPassable(x + 1, y, z, bounds, map))) state.player.position.x += 1;
       if (dir === 'W' && (state.player.clipping || isPassable(x, y, z + 1, bounds, map))) state.player.position.z += 1;
 
-      state.maps[state.level][bounds[
-        state.player.position.x][state.player.position.y][-state.player.position.z]
-      ].isExplored = true;
+      exploreTile(state, bounds);
     },
     moveRight(state) {
       const dir = getFacing(state.player.position.rotation);
@@ -105,9 +107,7 @@ const gameSlice = createSlice({
       if (dir === 'S' && (state.player.clipping || isPassable(x - 1, y, z, bounds, map))) state.player.position.x -= 1;
       if (dir === 'W' && (state.player.clipping || isPassable(x, y, z - 1, bounds, map))) state.player.position.z -= 1;
 
-      state.maps[state.level][bounds[
-        state.player.position.x][state.player.position.y][-state.player.position.z]
-      ].isExplored = true;
+      exploreTile(state, bounds);
     },
     moveUp(state) {
       const { x, y, z } = state.player.position;
@@ -117,9 +117,7 @@ const gameSlice = createSlice({
         state.player.position.y += 1;
       }
 
-      state.maps[state.level][bounds[
-        state.player.position.x][state.player.position.y][-state.player.position.z]
-      ].isExplored = true;
+      exploreTile(state, bounds);
     },
     setPosition(state, action) {
       const bounds = state.bounds[state.level];
@@ -128,26 +126,16 @@ const gameSlice = createSlice({
         ...action.payload,
       };
 
-      state.maps[state.level][bounds[
-        state.player.position.x][state.player.position.y][-state.player.position.z]
-      ].isExplored = true;
+      exploreTile(state, bounds);
     },
     toggleClipping(state) {
       state.player.clipping = !state.player.clipping;
     },
     turnLeft(state) {
-      if (state.player.position.rotation === 3) {
-        state.player.position.rotation = 0;
-      } else {
-        state.player.position.rotation += 1;
-      }
+      state.player.position.rotation += 1;
     },
     turnRight(state) {
-      if (state.player.position.rotation === -3) {
-        state.player.position.rotation = 0;
-      } else {
-        state.player.position.rotation -= 1;
-      }
+      state.player.position.rotation -= 1;
     },
   },
 });

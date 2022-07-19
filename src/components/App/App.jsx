@@ -9,6 +9,7 @@ import Camera from '../Camera/Camera';
 import useKeyboard from '../../hooks/useKeyboard';
 import { actions as gameActions } from '../../state/gameSlice';
 import getFacing from '../../constants/getFacing';
+import overlayImage from '../../images/overlay.png';
 import './App.css';
 
 function App() {
@@ -79,66 +80,74 @@ function App() {
 
   return (
     <div style={{ display: 'flex' }}>
-      <div style={{ height: 500, width: 625 }}>
-        <Canvas>
-          <Camera
-            x={x}
-            y={y}
-            z={z}
-            rotation={rotation}
-            fov={40}
-            lightLevel={lightLevel}
-          />
-          <Stars
-            radius={100}
-            depth={50}
-            count={5000}
-            factor={4}
-            saturation={0}
-            fade
-          />
-          <Suspense fallback={null}>
+      <Suspense fallback={null}>
+        <div style={{ height: 500, position: 'relative', width: 625 }}>
+          <Canvas>
+            <Camera
+              x={x}
+              y={y}
+              z={z}
+              rotation={rotation}
+              fov={40}
+              lightLevel={lightLevel}
+            />
+            <Stars
+              radius={100}
+              depth={50}
+              count={5000}
+              factor={4}
+              saturation={0}
+              fade
+            />
+
             {generateCubicLevel()}
-          </Suspense>
-          <axesHelper args={[2, 2, 2]} />
-        </Canvas>
-      </div>
-      <div style={{ display: 'flex', flexDirection: 'column' }}>
-        <button type="button" onClick={() => dispatch(gameActions.lightLevelIncrease())}>1: Increase light</button>
-        <button type="button" onClick={() => dispatch(gameActions.lightLevelDecrease())}>2: Decrease light</button>
-        <button type="button" onClick={() => dispatch(gameActions.turnLeft())}>Q: Turn left</button>
-        <button type="button" onClick={() => dispatch(gameActions.turnRight())}>E: Turn right</button>
-        <button type="button" onClick={() => dispatch(gameActions.moveForward())}>W: Move forward</button>
-        <button type="button" onClick={() => dispatch(gameActions.moveLeft())}>A: Move left</button>
-        <button type="button" onClick={() => dispatch(gameActions.moveBackward())}>S: Move backward</button>
-        <button type="button" onClick={() => dispatch(gameActions.moveRight())}>D: Move right</button>
-        <button type="button" onClick={() => dispatch(gameActions.moveUp())}>R: Move up</button>
-        <button type="button" onClick={() => dispatch(gameActions.moveDown())}>F: Move down</button>
-        <button type="button" onClick={() => dispatch(gameActions.toggleClipping())}>{`Clipping: ${clipping ? 'ON' : 'OFF'}`}</button>
-        <table>
-          <tbody>
-            <tr>
-              <td />
-              <td>{`N: ${getTileId(x, y, z - 1)}`}</td>
-              <td />
-              <td>{`U: ${getTileId(x, y + 1, z)}`}</td>
-            </tr>
-            <tr>
-              <td>{`W: ${getTileId(x - 1, y, z)}`}</td>
-              <td>{getTileId(x, y, z)}</td>
-              <td>{`E: ${getTileId(x + 1, y, z)}`}</td>
-              <td />
-            </tr>
-            <tr>
-              <td />
-              <td>{`S: ${getTileId(x, y, z + 1)}`}</td>
-              <td />
-              <td>{`D: ${getTileId(x, y - 1, z)}`}</td>
-            </tr>
-          </tbody>
-        </table>
-        <p className="compass">{getFacing(rotation)}</p>
-      </div>
+          </Canvas>
+          <div style={{
+            background: `url(${overlayImage}) 50% 50% no-repeat`, backgroundSize: 'contain', height: '100%', left: 0, position: 'absolute', top: 0, width: '100%',
+          }}
+          />
+        </div>
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          <button type="button" onClick={() => dispatch(gameActions.lightLevelIncrease())}>1: Increase light</button>
+          <button type="button" onClick={() => dispatch(gameActions.lightLevelDecrease())}>2: Decrease light</button>
+          <br />
+          <button type="button" onClick={() => dispatch(gameActions.moveForward())}>W: Move forward</button>
+          <button type="button" onClick={() => dispatch(gameActions.moveLeft())}>A: Move left</button>
+          <button type="button" onClick={() => dispatch(gameActions.moveBackward())}>S: Move backward</button>
+          <button type="button" onClick={() => dispatch(gameActions.moveRight())}>D: Move right</button>
+          <br />
+          <button type="button" onClick={() => dispatch(gameActions.moveUp())}>R: Move up</button>
+          <button type="button" onClick={() => dispatch(gameActions.moveDown())}>F: Move down</button>
+          <br />
+          <button type="button" onClick={() => dispatch(gameActions.turnLeft())}>Q: Turn left</button>
+          <button type="button" onClick={() => dispatch(gameActions.turnRight())}>E: Turn right</button>
+          <button type="button" onClick={() => dispatch(gameActions.toggleClipping())}>{`Clipping: ${clipping ? 'ON' : 'OFF'}`}</button>
+          <br />
+          <table>
+            <tbody>
+              <tr>
+                <td />
+                <td>{`N: ${getTileId(x, y, z - 1)}`}</td>
+                <td />
+                <td>{`U: ${getTileId(x, y + 1, z)}`}</td>
+              </tr>
+              <tr>
+                <td>{`W: ${getTileId(x - 1, y, z)}`}</td>
+                <td>{getTileId(x, y, z)}</td>
+                <td>{`E: ${getTileId(x + 1, y, z)}`}</td>
+                <td />
+              </tr>
+              <tr>
+                <td />
+                <td>{`S: ${getTileId(x, y, z + 1)}`}</td>
+                <td />
+                <td>{`D: ${getTileId(x, y - 1, z)}`}</td>
+              </tr>
+            </tbody>
+          </table>
+          <p className="compass">{`Facing: ${getFacing(rotation)}`}</p>
+        </div>
+      </Suspense>
     </div>
   );
 }

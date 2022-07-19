@@ -15,12 +15,12 @@ function Tile({ position, textures, tile }) {
     ref={mesh}
   >
     <boxBufferGeometry attach="geometry" args={[1, 0.75, 1]} />
-    <meshStandardMaterial map={textures[tile.textures[0]]} attach="material-0" opacity={0.5} metalness={1} />
-    <meshStandardMaterial map={textures[tile.textures[1]]} attach="material-1" opacity={0.5} metalness={1} />
-    <meshStandardMaterial map={textures[tile.textures[2]]} attach="material-2" opacity={0.5} metalness={1} />
-    <meshStandardMaterial map={textures[tile.textures[3]]} attach="material-3" opacity={0.5} metalness={1} />
-    <meshStandardMaterial map={textures[tile.textures[4]]} attach="material-4" opacity={0.5} metalness={1} />
-    <meshStandardMaterial map={textures[tile.textures[5]]} attach="material-5" opacity={0.5} metalness={1} />
+    <meshStandardMaterial map={textures[tile.textures[0]]} attach="material-0" metalness={1} />
+    <meshStandardMaterial map={textures[tile.textures[1]]} attach="material-1" metalness={1} />
+    <meshStandardMaterial map={textures[tile.textures[2]]} attach="material-2" metalness={1} />
+    <meshStandardMaterial map={textures[tile.textures[3]]} attach="material-3" metalness={1} />
+    <meshStandardMaterial map={textures[tile.textures[4]]} attach="material-4" metalness={1} />
+    <meshStandardMaterial map={textures[tile.textures[5]]} attach="material-5" metalness={1} />
   </mesh>
   );
 }
