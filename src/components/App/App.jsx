@@ -103,7 +103,7 @@ function App() {
             {generateCubicLevel()}
           </Canvas>
           <div style={{
-            background: `url(${overlayImage}) 50% 50% no-repeat`, backgroundSize: 'contain', height: '100%', left: 0, position: 'absolute', top: 0, width: '100%',
+            background: `url(${overlayImage}) 50% 100% no-repeat`, backgroundSize: 'contain', height: '100%', left: 0, position: 'absolute', top: 0, width: '100%',
           }}
           />
         </div>

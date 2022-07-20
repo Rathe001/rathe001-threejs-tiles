@@ -27,7 +27,7 @@ function Camera({
     if (cameraRef.current.rotation.y < getRotationRadians(rotation)) {
       cameraRef.current.rotation.x = 0;
       cameraRef.current.rotation.z = 0;
-      cameraRef.current.rotation.y += getRotationRadians(0.06);
+      cameraRef.current.rotation.y += getRotationRadians(0.08);
       if (cameraRef.current.rotation.y > getRotationRadians(rotation)) {
         cameraRef.current.rotation.y = getRotationRadians(rotation);
       }
@@ -35,7 +35,7 @@ function Camera({
     if (cameraRef.current.rotation.y > getRotationRadians(rotation)) {
       cameraRef.current.rotation.x = 0;
       cameraRef.current.rotation.z = 0;
-      cameraRef.current.rotation.y -= getRotationRadians(0.06);
+      cameraRef.current.rotation.y -= getRotationRadians(0.08);
       if (cameraRef.current.rotation.y < getRotationRadians(rotation)) {
         cameraRef.current.rotation.y = getRotationRadians(rotation);
       }
